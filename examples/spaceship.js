@@ -4,12 +4,12 @@
 
     $.extend(self, {
       init: function() {
-        self.position   = { x: 1, y: 1 };
+        self.position   = { x: 5, y: 5 };
         self.direction  = { x: 1, y: 1 };
         self.velocity   = 5;
         self.object     = new Image();
-        
         self.object.src = "smiley.jpg";
+        self.limits     = [400, 5, 225, 5];
         self.dimensions = {
           width: 150,
           height: 150
@@ -20,44 +20,40 @@
         return self;
       },
       moveForward: function() {
-        if (!self.outOfBounds()) {
-          self.position.y -= self.velocity * self.direction.y;
-        }
+        self.position.y -= self.velocity * self.direction.y;
+        self.outOfBounds();
       },
       moveBackward: function() {
-        if (!self.outOfBounds()) {
-          self.position.y += self.velocity * self.direction.y;
-        }
+        self.position.y += self.velocity * self.direction.y;
+        self.outOfBounds();
       },
       moveLeft: function() {
-        if (!self.outOfBounds()) {
-          self.position.x -= self.velocity * self.direction.x;
-        }
+        self.position.x -= self.velocity * self.direction.x;
+        self.outOfBounds();
       },
       moveRight: function() {
-        if (!self.outOfBounds()) {
-          self.position.x += self.velocity * self.direction.x;
-        }
+        self.position.x += self.velocity * self.direction.x;
+        self.outOfBounds();
       },
       rotate: function() {
-        game.paper.translate(self.dimenstions.width / 2, self.dimenstions.height / 2);
+        game.paper.translate(self.dimensions.width / 2, self.dimensions.height / 2);
         game.paper.rotate(game.sineWave * Math.PI * 2);
-        game.paper.translate(-(self.dimenstions.width / 2), -(self.dimenstions.height / 2));
+        game.paper.translate(-(self.dimensions.width / 2), -(self.dimensions.height / 2));
       },
       outOfBounds: function() {
         var pos = self.position;
         
-        if (pos.x >= 100) {
-          self.position.x = 100;
-        } else if (pos.x <= 1) {
-          self.position.x = 1;
+        if (pos.x >= self.limits[0]) {
+          self.position.x = self.limits[0];
+        } else if (pos.x <= self.limits[1]) {
+          self.position.x = self.limits[1];
         }
         
-        if (pos.y >= 100) {
-          self.position.y = 100;
-        } else if (pos.y <= 1) {
-          self.position.y = 1;
-        }      
+        if (pos.y >= self.limits[2]) {
+          self.position.y = self.limits[2];
+        } else if (pos.y <= self.limits[3]) {
+          self.position.y = self.limits[3];
+        }
       }
     });
     
