@@ -6,7 +6,7 @@
         maxSpeed = 10;
 
     var image = new Image();
-    image.src = "http://javascript-tutorials.googlecode.com/files/jsplatformer1-smiley.jpg";
+    image.src = "smiley.jpg";
         
     self.direction = new Vector(1, 1);
     self.position = new Vector(0, 0);
@@ -17,12 +17,12 @@
       draw: function() {
         game.paper.drawImage(image, self.position.x, self.position.y);
         
-        game.paper.translate(75, 75);
-        game.paper.rotate(game.timeFactor * Math.PI * 2);
-        game.paper.translate(-75, -75);
+        // game.paper.translate(75, 75);
+        // game.paper.rotate(game.timeFactor * Math.PI * 2);
+        // game.paper.translate(-75, -75);
         
-        // self.position.x += 1 * self.direction.x;
-        // self.position.y += 1 * self.direction.y;
+        self.position.x += 1 * self.direction.x;
+        self.position.y += 1 * self.direction.y;
         // 
         // if (self.position.x >= 100) {
         //   self.position.x = 100;
