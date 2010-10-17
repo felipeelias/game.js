@@ -2,16 +2,12 @@ function Starfield ( game, params ) {
 	var self = this, 
 	    params = params || {};
 	
-	self.xLimit = game.canvas.offsetWidth/2;
-	self.yLimit = game.canvas.offsetHeight/2;
-	self.zLimit = params.depth || 255;
+	self.xLimit = game.canvas.offsetWidth;
+	self.yLimit = game.canvas.offsetHeight;
 	self.starCount = params.starCount || 100;
-	self.zoomLimit = params.zoomLimit || 2;
-	self.zoomFactor = params.zoomFactor || .035;
 	
 	$.extend(self, {
 	  init: function() {
-    	game.paper.translate(self.xLimit, self.yLimit);
     	self.stars = [];
     	
     	for(var i = 0; i < self.starCount; i++) {
@@ -26,64 +22,53 @@ function Starfield ( game, params ) {
     	}
     },
     
-    oneStepForward: function() {
-    	game.paper.clearRect(-self.xLimit, -self.yLimit, self.xLimit*2, self.yLimit*2);
-    	
+    draw: function() {
     	for(var i = 0; i < self.starCount; i++) {
     		var star = self.stars[i];
 
-    		if ( Math.abs(star.x) > self.xLimit ) {
-    			self.recycleStar(star);
-    		} else {
-    			star.x += (star.x * star.acc) / 200;
-    		}
-
-    		if ( Math.abs(star.y) > self.yLimit ) {
-    			self.recycleStar(star);
-    		} else {
-    			star.y += (star.y * star.acc) / 200;
-    		}
-
-    		star.z = (star.z < self.zoomLimit) ? star.z + self.zoomFactor : star.z;
-    		star.color += (star.color < 255) ? star.acc : 0;
+        if ( star.y > self.yLimit ) {
+         self.recycleStar(star);
+        } else {
+         star.y += star.acc;
+        }
 
     		self.drawStar(star);
     	}
     },
     
     drawStar: function ( star ) {
-    	game.paper.fillStyle = rgb(star.color, star.color, star.color);
+      game.paper.fillStyle = rgb(star.color, star.color, star.color);
       game.paper.beginPath();
     	game.paper.arc(star.x, star.y, star.z, 0, Math.PI*2, true);
-    	game.paper.fill();
+      game.paper.fill();
     },
     
     recycleStar: function ( star ) {
     	star.x    = self.newX();
-    	star.y    = self.newY();
+    	star.y    = 0;
     	star.z    = self.newZ();
     	star.acc  = self.newAcc();
     	star.color = self.newColor();
     },
     
     newX: function() {
-    	return random(-self.xLimit, self.xLimit);
+    	return random(0, self.xLimit);
     },
-    
+
     newY: function() {
-    	return random(-self.yLimit, self.yLimit);
+    	return random(0, self.yLimit);
     },
     
     newZ: function() {
-    	return .1;
+    	return 1;
     },
     
     newAcc: function() {
-    	return random(5, 25);
+    	return random(1, 15);
     },
     
     newColor: function() {
-    	return 0;
+    	return random(0, 255);
     },
     
 	  toString: function() {
