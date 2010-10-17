@@ -27,11 +27,3 @@ game.start(function() {
   
   ship.draw()
 });
-
-function radians(deg) {
-	return deg * 0.0174532925;
-};
-
-function degrees(rad) {
-	return rad * 57.2957795;
-};

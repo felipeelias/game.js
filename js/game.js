@@ -5,6 +5,7 @@ function Game(options) {
   
   currentTimeFactor = 0;
   
+  // future api
   // self.options = $.extend({
   //   fps: 30,
   //   size: {
