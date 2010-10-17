@@ -8,6 +8,8 @@ var ship = new Spaceship(game).draw();
 //   }
 // });
 
+$("#canvas").css({"background-color": "#000"});
+
 game.start(function() {
   if (isKeyPressed('up')) {
     ship.moveForward();
