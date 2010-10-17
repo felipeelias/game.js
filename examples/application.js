@@ -1,5 +1,6 @@
 var game = new Game();
-var ship = new Spaceship(game).draw();
+var ship = new Spaceship(game);
+var starField = new Starfield(game);
 
 // future API
 // game.mapKeys({
@@ -31,5 +32,6 @@ game.start(function() {
     ship.rotate();
   }
   
+  starField.draw();
   ship.draw()
 });
