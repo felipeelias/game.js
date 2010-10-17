@@ -11,18 +11,22 @@ var ship = new Spaceship(game).draw();
 game.start(function() {
   if (isKeyPressed('up')) {
     ship.moveForward();
-  } else {
-    ship.stop();
   }
   
-  if (isKeyPressed('left')) {
-    console.log('left')
-    ship.rotateLeft();
+  if (isKeyPressed('down')) {
+    ship.moveBackward();
   }
   
   if (isKeyPressed('right')) {
-    console.log('right')
-    ship.rotateRight();
+    ship.moveRight();
+  }
+  
+  if (isKeyPressed('left')) {
+    ship.moveLeft();
+  }
+  
+  if (isKeyPressed('space')) {
+    ship.rotate();
   }
   
   ship.draw()
