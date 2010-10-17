@@ -6,9 +6,14 @@
       init: function() {
         self.position   = { x: 1, y: 1 };
         self.direction  = { x: 1, y: 1 };
+        self.velocity   = 5;
         self.object     = new Image();
         
         self.object.src = "smiley.jpg";
+        self.dimensions = {
+          width: 150,
+          height: 150
+        }
       },
       draw: function() {
         game.paper.drawImage(self.object, self.position.x, self.position.y);
@@ -16,28 +21,28 @@
       },
       moveForward: function() {
         if (!self.outOfBounds()) {
-          self.position.y -= 1 * self.direction.y;
+          self.position.y -= self.velocity * self.direction.y;
         }
       },
       moveBackward: function() {
         if (!self.outOfBounds()) {
-          self.position.y += 1 * self.direction.y;
+          self.position.y += self.velocity * self.direction.y;
         }
       },
       moveLeft: function() {
         if (!self.outOfBounds()) {
-          self.position.x -= 1 * self.direction.x;
+          self.position.x -= self.velocity * self.direction.x;
         }
       },
       moveRight: function() {
         if (!self.outOfBounds()) {
-          self.position.x += 1 * self.direction.x;
+          self.position.x += self.velocity * self.direction.x;
         }
       },
       rotate: function() {
-        game.paper.translate(75, 75);
+        game.paper.translate(self.dimenstions.width / 2, self.dimenstions.height / 2);
         game.paper.rotate(game.sineWave * Math.PI * 2);
-        game.paper.translate(-75, -75);
+        game.paper.translate(-(self.dimenstions.width / 2), -(self.dimenstions.height / 2));
       },
       outOfBounds: function() {
         var pos = self.position;
