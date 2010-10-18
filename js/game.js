@@ -1,8 +1,9 @@
 function Game(options) {
   var self = this,
-      currentTime = 0,
+      currentTime,
       gameLoop, 
-      defaultLoop;
+      defaultLoop,
+      isStarted;
   
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
@@ -17,15 +18,17 @@ function Game(options) {
   // }, options);
     
   defaultLoop = function() {
-    self.updateTime();
-    self.calculateSineWave();
+    if (isStarted) {
+      self.updateTime();
+      self.calculateSineWave();
 
-    self.clearContext();
-    self.paper.save();
-    
-    gameLoop.call(self);
-    
-    self.paper.restore();
+      self.clearContext();
+      self.paper.save();
+
+      gameLoop.call(self);
+
+      self.paper.restore();
+    }
     
     setTimeout(defaultLoop, self.TIME_FRAME);
   };
@@ -35,11 +38,22 @@ function Game(options) {
       self.canvas   = document.getElementById("canvas");
       self.paper    = self.canvas.getContext("2d");
       self.sineWave = 0;
+      currentTime   = 0;
+      isStarted     = false;
+      
+      defaultLoop();
     },
     
-    start: function( loop ) {
+    start: function() {
+      isStarted = true;
+    },
+    
+    stop: function() {
+      isStarted = false;
+    },
+    
+    loop: function( loop ) {
       gameLoop = loop;
-      setTimeout(defaultLoop, self.TIME_FRAME);
     },
     
     clearContext: function() {

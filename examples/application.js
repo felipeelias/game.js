@@ -11,7 +11,7 @@ var starField = new Starfield(game);
 
 $("#canvas").css({"background-color": "#000"});
 
-game.start(function() {
+game.loop(function() {
   if (isKeyPressed('up')) {
     ship.moveForward();
   }
@@ -35,3 +35,5 @@ game.start(function() {
   starField.draw();
   ship.draw()
 });
+
+game.start();
