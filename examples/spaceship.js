@@ -14,8 +14,6 @@
         self.position   = { x: 5, y: 5 };
         self.direction  = { x: 1, y: 1 };
         self.velocity   = 5;
-        self.object     = new Image();
-        self.object.src = "smiley.jpg";
         self.limits     = [400, 5, 225, 5];
         self.dimensions = {
           width: 150,
