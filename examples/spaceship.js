@@ -1,7 +1,14 @@
 (function() {
   function Spaceship( game ) {
     var self = this;
-
+    
+    var playerWidth = 20, playerHeight = 30;
+    var playerVerts = [
+      [ - 1 * playerHeight / 2, -1 * playerWidth / 2], 
+      [ - 1 * playerHeight / 2, playerWidth / 2], 
+      [playerHeight / 2, 0]
+    ];    
+    
     $.extend(self, {
       init: function() {
         self.position   = { x: 5, y: 5 };
@@ -16,7 +23,18 @@
         }
       },
       draw: function() {
-        game.paper.drawImage(self.object, self.position.x, self.position.y);
+        game.paper.translate(self.position.x, self.position.y);
+        // game.paper.rotate(that.dir.angle());
+        
+        game.util.tracePoly(playerVerts);
+        
+        game.paper.fillStyle = "white";
+        game.paper.fill();
+        
+        game.util.tracePoly(playerVerts);
+        
+        game.paper.stroke();
+        
         return self;
       },
       moveForward: function() {
@@ -61,9 +79,5 @@
   };
   
   window.Spaceship = Spaceship;
-  
-  function trianglePath ( x, y, radius ) {
-    return "M".concat(x, ",", y, "m0-", radius * .58, "l", radius * .5, ",", radius * 1.5, "-", radius, ",0z");
-  };
   
 })();

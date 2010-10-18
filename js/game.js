@@ -66,6 +66,17 @@ function Game(options) {
     
     updateTime: function() {
       return currentTime += self.TIME_FRAME;
+    },
+    
+    util: {
+      tracePoly: function( verts ) {
+        self.paper.beginPath();
+        self.paper.moveTo(verts[0][0], verts[0][1]);
+        for (var i = 1; i < verts.length; i++) {
+          self.paper.lineTo(verts[i][0], verts[i][1]);
+        }
+        self.paper.closePath();
+      }
     }
   });
   
