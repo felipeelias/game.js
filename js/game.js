@@ -76,6 +76,10 @@ function Game(options) {
           self.paper.lineTo(verts[i][0], verts[i][1]);
         }
         self.paper.closePath();
+      },
+      
+      radians: function( deg ) {
+        return deg * 0.0174532925;
       }
     }
   });
