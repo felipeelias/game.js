@@ -11,39 +11,51 @@
     
     $.extend(self, {
       init: function() {
-        self.position   = { x: 5, y: 5 };
-        self.direction  = { x: 1, y: 1 };
-        self.velocity   = 5;
-        self.limits     = [400, 5, 225, 5];
+        self.position   = new Vector(100, 100);
+        self.direction  = new Vector(1, 1);
+        self.velocity   = new Vector(0, 0);
+        self.accel      = 0.5;
+        self.limits     = [ game.canvas.offsetWidth - playerHeight, 
+                            5 + playerWidth, 
+                            game.canvas.offsetHeight - playerHeight, 
+                            5 + playerHeight
+                          ];
         self.dimensions = {
-          width: 150,
-          height: 150
+          width: playerWidth,
+          height: playerHeight
         }
       },
       
       draw: function() {
+        self.position.add(self.velocity)
+
         game.paper.translate(self.position.x, self.position.y);
         // game.paper.rotate(that.dir.angle());
-        
-        game.util.tracePoly(playerVerts);
-        
-        game.paper.fillStyle = "white";
-        game.paper.fill();
-        
-        game.util.tracePoly(playerVerts);
-        
-        game.paper.stroke();
+        self.drawPlayer();
         
         return self;
       },
       
+      drawPlayer: function() {
+        game.util.tracePoly(playerVerts);
+        game.paper.fillStyle = "white";
+        game.paper.fill();
+        game.util.tracePoly(playerVerts);
+        game.paper.stroke();
+      },
+      
       moveForward: function() {
-        self.position.y -= self.velocity * self.direction.y;
+        if (self.velocity.len() > 7) {
+          self.velocity.setLength(7);
+        }
+        
+        self.velocity.add(self.direction.mulNew(self.accel))
         self.boundsCheck();
       },
       
       moveBackward: function() {
-        self.position.y += self.velocity * self.direction.y;
+        // self.position.y += self.velocity * self.direction.y;
+        self.velocity.mul(0.85)
         self.boundsCheck();
       },
       

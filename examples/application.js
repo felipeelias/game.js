@@ -14,9 +14,7 @@ $("#canvas").css({"background-color": "#000"});
 game.loop(function() {
   if (isKeyPressed('up')) {
     ship.moveForward();
-  }
-  
-  if (isKeyPressed('down')) {
+  } else {
     ship.moveBackward();
   }
   
