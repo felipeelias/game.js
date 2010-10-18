@@ -22,6 +22,7 @@
           height: 150
         }
       },
+      
       draw: function() {
         game.paper.translate(self.position.x, self.position.y);
         // game.paper.rotate(that.dir.angle());
@@ -37,28 +38,34 @@
         
         return self;
       },
+      
       moveForward: function() {
         self.position.y -= self.velocity * self.direction.y;
-        self.outOfBounds();
+        self.boundsCheck();
       },
+      
       moveBackward: function() {
         self.position.y += self.velocity * self.direction.y;
-        self.outOfBounds();
+        self.boundsCheck();
       },
+      
       moveLeft: function() {
         self.position.x -= self.velocity * self.direction.x;
-        self.outOfBounds();
+        self.boundsCheck();
       },
+      
       moveRight: function() {
         self.position.x += self.velocity * self.direction.x;
-        self.outOfBounds();
+        self.boundsCheck();
       },
+      
       rotate: function() {
         game.paper.translate(self.dimensions.width / 2, self.dimensions.height / 2);
         game.paper.rotate(game.sineWave * Math.PI * 2);
         game.paper.translate(-(self.dimensions.width / 2), -(self.dimensions.height / 2));
       },
-      outOfBounds: function() {
+      
+      boundsCheck: function() {
         var pos = self.position;
         
         if (pos.x >= self.limits[0]) {
