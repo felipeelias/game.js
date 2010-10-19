@@ -33,6 +33,19 @@ function Game(options) {
     setTimeout(defaultLoop, self.TIME_FRAME);
   };
   
+  bindGlobalKeys = function() {
+    $(document).bind('keyup.global', function(e) {
+      if ( self.pauseKey && keyMapping[e.keyCode] === self.pauseKey ) {
+        if ( self.isStarted() ) {
+          self.pause()
+        } else {
+          self.start();
+        }
+        return false;
+      }
+    });
+  }
+  
   $.extend(self, {
     init: function() {
       self.canvas   = document.getElementById("canvas");
@@ -41,6 +54,7 @@ function Game(options) {
       currentTime   = 0;
       started       = false;
       
+      bindGlobalKeys();
       defaultLoop();
     },
     
