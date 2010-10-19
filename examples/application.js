@@ -11,6 +11,8 @@ var starField = new Starfield(game);
 
 $("#canvas").css({"background-color": "#000"});
 
+game.pauseKey = 'p';
+
 game.loop(function() {
   if (isKeyPressed('up')) {
     ship.moveForward();
