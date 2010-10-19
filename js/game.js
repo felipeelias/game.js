@@ -3,7 +3,7 @@ function Game(options) {
       currentTime,
       gameLoop, 
       defaultLoop,
-      isStarted;
+      started;
   
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
@@ -18,7 +18,7 @@ function Game(options) {
   // }, options);
     
   defaultLoop = function() {
-    if (isStarted) {
+    if (self.isStarted()) {
       self.updateTime();
       self.calculateSineWave();
 
@@ -39,17 +39,25 @@ function Game(options) {
       self.paper    = self.canvas.getContext("2d");
       self.sineWave = 0;
       currentTime   = 0;
-      isStarted     = false;
+      started       = false;
       
       defaultLoop();
     },
     
     start: function() {
-      isStarted = true;
+      started = true;
     },
     
-    stop: function() {
-      isStarted = false;
+    pause: function() {
+      started = false;
+    },
+    
+    isStarted: function() {
+      return started;
+    },
+    
+    isPaused: function() {
+      return !started;
     },
     
     loop: function( loop ) {
