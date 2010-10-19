@@ -11,7 +11,7 @@
     
     $.extend(self, {
       init: function() {
-        self.position   = new Vector(100, 100);
+        self.position   = new Vector(480, 420);
         self.angle      = 0;
         self.velocity   = new Vector(0, 0);
         self.limits     = [ game.canvas.offsetWidth - playerHeight, 
