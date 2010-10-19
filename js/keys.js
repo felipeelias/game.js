@@ -5,7 +5,8 @@ var keyMapping = {
   38: 'up',
   39: 'right',
   40: 'down',
-  32: 'space'
+  32: 'space',
+  80: 'p'
 };
 
 var codeMapping = invertMapping(keyMapping);
@@ -39,7 +40,7 @@ function isKeyPressed( name ) {
 }
 
 function bindKeys() {
-  $(document).bind('keydown', function(e) {
+  $(document).bind('keydown.ingame', function(e) {
     var code = e.keyCode;
 
     if ( isKeyMapped(code) ) {
@@ -48,7 +49,7 @@ function bindKeys() {
     }
   });
   
-  $(document).bind('keyup', function(e) {
+  $(document).bind('keyup.ingame', function(e) {
     var code = e.keyCode;
 
     if ( isKeyMapped(code) ) {
