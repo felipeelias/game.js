@@ -12,7 +12,7 @@
     $.extend(self, {
       init: function() {
         self.position   = new Vector(100, 100);
-        self.direction  = new Vector(1, 1);
+        self.angle      = 0;
         self.velocity   = new Vector(0, 0);
         self.limits     = [ game.canvas.offsetWidth - playerHeight, 
                             5 + playerHeight, 
@@ -21,14 +21,14 @@
                           ];
         self.accelleration = 0.5;
         self.maxSpeed      = 7;
-        self.rotationSpeed = 11;
+        self.rotationSpeed = 0.2;
       },
       
       draw: function() {
         self.position.add(self.velocity)
 
         game.paper.translate(self.position.x, self.position.y);
-        game.paper.rotate(self.direction.angle());
+        game.paper.rotate(self.angle);
         self.drawPlayer();
         
         return self;
@@ -44,7 +44,10 @@
       
       moveForward: function() {
         self.speedCheck();
-        self.velocity.add(self.direction.mulNew(self.accelleration));
+        self.velocity.add({
+          x: Rotation.offsetX(self.angle, self.accelleration),
+          y: Rotation.offsetY(self.angle, self.accelleration)
+        });
         self.boundsCheck();
       },
       
@@ -54,14 +57,12 @@
       },
       
       moveLeft: function() {
-        var rotation = game.util.radians(self.rotationSpeed * game.TIME_FRAME * -1);
-        self.direction.rotate(rotation);
+        self.angle -= self.rotationSpeed;
         self.boundsCheck();
       },
       
       moveRight: function() {
-        var rotation = game.util.radians(self.rotationSpeed * game.TIME_FRAME);
-        self.direction.rotate(rotation);
+        self.angle += self.rotationSpeed;
         self.boundsCheck();
       },
       
