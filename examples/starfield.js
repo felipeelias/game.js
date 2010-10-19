@@ -11,14 +11,8 @@ function Starfield ( game, params ) {
     	self.stars = [];
     	
     	for(var i = 0; i < self.starCount; i++) {
-    		self.stars.push({
-    			x: self.newX(),
-    			y: self.newY(),
-    			z: self.newZ(),
-    			acc: self.newAcc(),
-    			color: self.newColor()
-    		});
-    		game.paper.fillStyle = rgb(self.stars[i].color, self.stars[i].color, self.stars[i].color);
+        self.stars.push(self.newStar());
+        game.paper.fillStyle = rgb(self.stars[i].color, self.stars[i].color, self.stars[i].color);
     	}
     },
     
@@ -41,6 +35,16 @@ function Starfield ( game, params ) {
       game.paper.beginPath();
     	game.paper.arc(star.x, star.y, star.z, 0, Math.PI*2, true);
       game.paper.fill();
+    },
+    
+    newStar: function() {
+      return {
+  			x: self.newX(),
+  			y: self.newY(),
+  			z: self.newZ(),
+  			acc: self.newAcc(),
+  			color: self.newColor()
+  		}
     },
     
     recycleStar: function ( star ) {
