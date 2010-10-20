@@ -29,7 +29,7 @@ game.loop(function() {
   }
   
   if (isKeyPressed('space')) {
-    ship.rotate();
+    ship.fire();
   }
   
   starField.draw();

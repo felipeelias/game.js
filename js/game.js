@@ -1,6 +1,5 @@
 function Game(options) {
   var self = this,
-      currentTime,
       gameLoop, 
       defaultLoop,
       started;
@@ -48,11 +47,11 @@ function Game(options) {
   
   $.extend(self, {
     init: function() {
-      self.canvas   = document.getElementById("canvas");
-      self.paper    = self.canvas.getContext("2d");
-      self.sineWave = 0;
-      currentTime   = 0;
-      started       = false;
+      self.canvas       = document.getElementById("canvas");
+      self.paper        = self.canvas.getContext("2d");
+      self.sineWave     = 0;
+      self.currentTime  = 0;
+      started           = false;
       
       bindGlobalKeys();
       defaultLoop();
@@ -83,11 +82,11 @@ function Game(options) {
     },
     
     calculateSineWave: function() {
-      return self.sineWave = ((Math.sin(currentTime / 1000) + 1) / 2);
+      return self.sineWave = ((Math.sin(self.currentTime / 1000) + 1) / 2);
     },
     
     updateTime: function() {
-      return currentTime += self.TIME_FRAME;
+      return self.currentTime += self.TIME_FRAME;
     },
     
     util: {
