@@ -1,10 +1,12 @@
 function Starfield ( game, params ) {
   var self = this, 
-      params = params || {};
+      options = $.extend({ 
+        starCount: 100 
+      }, params);
   
   self.xLimit = game.canvas.offsetWidth;
   self.yLimit = game.canvas.offsetHeight;
-  self.starCount = params.starCount || 100;
+  self.starCount = options.starCount;
   
   $.extend(self, {
     init: function() {
@@ -17,8 +19,9 @@ function Starfield ( game, params ) {
     },
     
     draw: function() {
-      for(var i = 0; i < self.starCount; i++) {
-        var star = self.stars[i];
+      var i, star;
+      for(i = 0; i < self.starCount; i++) {
+        star = self.stars[i];
 
         if ( star.y > self.yLimit ) {
          self.recycleStar(star);
@@ -44,7 +47,7 @@ function Starfield ( game, params ) {
         z: self.newZ(),
         acc: self.newAcc(),
         color: self.newColor()
-      }
+      };
     },
     
     recycleStar: function ( star ) {
@@ -81,7 +84,7 @@ function Starfield ( game, params ) {
   });
   
   self.init();
-};
+}
 
 function random(lower, upper){
   return Math.floor(Math.random() * (upper-lower) + lower);
