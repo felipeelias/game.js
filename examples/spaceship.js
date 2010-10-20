@@ -1,13 +1,13 @@
 (function() {
   function Spaceship( game ) {
-    var self = this;
-
-    var playerWidth = 20, playerHeight = 30;
-    var playerVertices = [
-      [ - 1 * playerHeight / 2, -1 * playerWidth / 2], 
-      [ - 1 * playerHeight / 2, playerWidth / 2], 
-      [playerHeight / 2, 0]
-    ];    
+    var self = this,
+        playerWidth = 20, 
+        playerHeight = 30,
+        playerVertices = [
+          [ - 1 * playerHeight / 2, -1 * playerWidth / 2], 
+          [ - 1 * playerHeight / 2, playerWidth / 2], 
+          [playerHeight / 2, 0]
+        ];    
     
     $.extend(self, {
       init: function() {
@@ -28,7 +28,7 @@
       },
       
       draw: function() {
-        self.position.add(self.velocity)
+        self.position.add(self.velocity);
         game.paper.save();
         game.paper.translate(self.position.x, self.position.y);
         game.paper.rotate(self.angle);
@@ -55,7 +55,7 @@
       },
       
       moveBackward: function() {
-        self.velocity.mul(0.85)
+        self.velocity.mul(0.85);
         self.boundsCheck();
       },
       
@@ -83,7 +83,7 @@
           } else {
             self.bullets[i].draw();
           }
-        };
+        }
       },
       
       boundsCheck: function() {
@@ -110,7 +110,7 @@
     });
     
     self.init();
-  };
+  }
   
   window.Spaceship = Spaceship;
   
