@@ -71,7 +71,6 @@
       
       fire: function() {
         if ( (game.currentTime - self.lastFire) > self.fireSpeed ) {
-          console.log('fire!', self.lastFire)
           self.lastFire = game.currentTime;
           self.bullets.push(new Bullet());
         }
