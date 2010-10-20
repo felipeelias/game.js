@@ -24,7 +24,7 @@
         self.rotationSpeed = 0.2;
         self.bullets       = [];
         self.lastFire      = -1000;
-        self.fireSpeed     = 1000;
+        self.fireSpeed     = 500;
       },
       
       draw: function() {
@@ -33,6 +33,7 @@
         game.paper.translate(self.position.x, self.position.y);
         game.paper.rotate(self.angle);
         self.drawPlayer();
+        self.drawBullets();
         
         return self;
       },
@@ -72,8 +73,14 @@
       fire: function() {
         if ( (game.currentTime - self.lastFire) > self.fireSpeed ) {
           self.lastFire = game.currentTime;
-          self.bullets.push(new Bullet());
+          self.bullets.push(new Bullet(game));
         }
+      },
+      
+      drawBullets: function() {
+        $.each(self.bullets, function() {
+          this.draw();
+        });
       },
       
       boundsCheck: function() {
