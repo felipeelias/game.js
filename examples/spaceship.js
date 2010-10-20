@@ -29,20 +29,19 @@
       
       draw: function() {
         self.position.add(self.velocity)
-
+        game.paper.save();
         game.paper.translate(self.position.x, self.position.y);
         game.paper.rotate(self.angle);
         self.drawPlayer();
-        self.drawBullets();
+        game.paper.restore();
         
         return self;
       },
       
       drawPlayer: function() {
-        game.util.tracePoly(playerVertices);
         game.paper.fillStyle = "white";
-        game.paper.fill();
         game.util.tracePoly(playerVertices);
+        game.paper.fill();
         game.paper.stroke();
       },
       
@@ -78,9 +77,13 @@
       },
       
       drawBullets: function() {
-        $.each(self.bullets, function() {
-          this.draw();
-        });
+        for( var i = self.bullets.length - 1; i >= 0; i-- ) {
+          if ( self.bullets[i].isDead() ) {
+            self.bullets.splice(i, 1);
+          } else {
+            self.bullets[i].draw();
+          }
+        };
       },
       
       boundsCheck: function() {
