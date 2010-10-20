@@ -36,14 +36,14 @@ function Game(options) {
     $(document).bind('keyup.global', function(e) {
       if ( self.pauseKey && keyMapping[e.keyCode] === self.pauseKey ) {
         if ( self.isStarted() ) {
-          self.pause()
+          self.pause();
         } else {
           self.start();
         }
         return false;
       }
     });
-  }
+  };
   
   $.extend(self, {
     init: function() {
@@ -82,11 +82,13 @@ function Game(options) {
     },
     
     calculateSineWave: function() {
-      return self.sineWave = ((Math.sin(self.currentTime / 1000) + 1) / 2);
+      self.sineWave = ((Math.sin(self.currentTime / 1000) + 1) / 2);
+      return self.sineWave;
     },
     
     updateTime: function() {
-      return self.currentTime += self.TIME_FRAME;
+      self.currentTime += self.TIME_FRAME;
+      return self.currentTime;
     },
     
     util: {

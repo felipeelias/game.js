@@ -1,7 +1,6 @@
 function Bullet( game ) {
-  var self = this;
-  
-  var bulletRadius = 2,
+  var self = this,
+      bulletRadius = 2,
       PI_SQ = Math.PI * 2;
   
   $.extend(self, {
