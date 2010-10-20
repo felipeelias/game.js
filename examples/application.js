@@ -33,7 +33,8 @@ game.loop(function() {
   }
   
   starField.draw();
-  ship.draw()
+  ship.draw();
+  ship.drawBullets();
 });
 
 game.start();
