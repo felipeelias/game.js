@@ -29,6 +29,7 @@
       
       draw: function() {
         self.position.add(self.velocity);
+        
         game.paper.save();
         game.paper.translate(self.position.x, self.position.y);
         game.paper.rotate(self.angle);

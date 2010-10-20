@@ -15,12 +15,11 @@ function Bullet( game ) {
     
     draw: function() {
       self.addSpeed();
-      game.paper.fillStyle = "#F55";
       
+      game.paper.fillStyle = "#F55";
       game.paper.beginPath();
       game.paper.arc(self.position.x, self.position.y, bulletRadius, 0, PI_SQ, true);
       game.paper.closePath();
-      
       game.paper.fill();
     },
     

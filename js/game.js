@@ -22,11 +22,8 @@ function Game(options) {
       self.calculateSineWave();
 
       self.clearContext();
-      self.paper.save();
 
       gameLoop.call(self);
-
-      self.paper.restore();
     }
     
     setTimeout(defaultLoop, self.TIME_FRAME);
