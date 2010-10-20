@@ -73,7 +73,7 @@
       fire: function() {
         if ( (game.currentTime - self.lastFire) > self.fireSpeed ) {
           self.lastFire = game.currentTime;
-          self.bullets.push(new Bullet(game));
+          self.bullets.push(new Bullet(game, self.position.cp(), self.angle, self.velocity.cp()));
         }
       },
       

@@ -1,15 +1,15 @@
-function Bullet( game ) {
+function Bullet( game, initial_position, intial_angle, initial_velocity ) {
   var self = this,
       bulletRadius = 2,
       PI_SQ = Math.PI * 2;
   
   $.extend(self, {
     init: function() {
-      self.position = new Vector(1, 1);
-      self.velocity = new Vector(0, 0);
-      self.angle    = 0;
-      self.accelleration = 0.5;
-      self.lifeTime = 2000;
+      self.position = initial_position;
+      self.velocity = initial_velocity;
+      self.angle    = intial_angle;
+      self.accelleration = 1.2;
+      self.lifeTime = 1000;
       self.startTime = game.currentTime;
     },
     
