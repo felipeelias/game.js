@@ -9,7 +9,9 @@ function Bullet( game ) {
       self.position = new Vector(1, 1);
       self.velocity = new Vector(0, 0);
       self.angle    = 0;
-      self.accelleration = 7;
+      self.accelleration = 0.5;
+      self.lifeTime = 2000;
+      self.startTime = game.currentTime;
     },
     
     draw: function() {
@@ -29,6 +31,14 @@ function Bullet( game ) {
         y: Rotation.offsetY(self.angle, self.accelleration)
       });
       self.position.add(self.velocity);
+    },
+    
+    isDead: function() {
+      if ( (game.currentTime - self.startTime) > self.lifeTime) {
+        return true;
+      } else {
+        return false;
+      }
     }
   });
   
