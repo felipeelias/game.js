@@ -1,8 +1,8 @@
 var Rotation = {
-  offsetX: function(angle, velocity) {
-    return Math.cos(angle) * velocity;
+  offsetX: function(angle, radius) {
+    return Math.cos(angle / 180 * Math.PI) * radius;
   },
-  offsetY: function(angle, velocity) {
-    return Math.sin(angle) * velocity;
+  offsetY: function(angle, radius) {
+    return Math.sin(angle / 180 * Math.PI) * radius;
   }
 }
