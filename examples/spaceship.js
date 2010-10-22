@@ -1,27 +1,25 @@
 (function() {
   function Spaceship( game ) {
     var self = this,
-        playerWidth = 20, 
-        playerHeight = 30,
         playerVertices = [
-          [ - 1 * playerHeight / 2, -1 * playerWidth / 2], 
-          [ - 1 * playerHeight / 2, playerWidth / 2], 
-          [playerHeight / 2, 0]
-        ];    
+          [-10, 10],
+          [20, 0],
+          [-10, -10]
+        ];
     
     $.extend(self, {
       init: function() {
         self.position   = new Vector(480, 420);
-        self.angle      = -1.578;
+        self.angle      = 270;
         self.velocity   = new Vector(0, 0);
-        self.limits     = [ game.canvas.offsetWidth - playerHeight, 
-                            5 + playerHeight, 
-                            game.canvas.offsetHeight - playerHeight, 
-                            5 + playerHeight
+        self.limits     = [ game.canvas.offsetWidth, 
+                            0, 
+                            game.canvas.offsetHeight, 
+                            0
                           ];
-        self.accelleration = 0.5;
+        self.accelleration = 0.6;
         self.maxSpeed      = 7;
-        self.rotationSpeed = 0.2;
+        self.rotationSpeed = 7;
         self.bullets       = [];
         self.lastFire      = -1000;
         self.fireSpeed     = 500;
@@ -32,7 +30,7 @@
         
         game.paper.save();
         game.paper.translate(self.position.x, self.position.y);
-        game.paper.rotate(self.angle);
+        game.paper.rotate(game.util.radians(self.angle));
         self.drawPlayer();
         game.paper.restore();
         
@@ -62,12 +60,10 @@
       
       moveLeft: function() {
         self.angle -= self.rotationSpeed;
-        self.boundsCheck();
       },
       
       moveRight: function() {
         self.angle += self.rotationSpeed;
-        self.boundsCheck();
       },
       
       fire: function() {
