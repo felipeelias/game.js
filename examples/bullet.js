@@ -5,7 +5,10 @@ function Bullet( game, initial_position, intial_angle, initial_velocity ) {
   
   $.extend(self, {
     init: function() {
-      self.position = initial_position;
+      self.position = initial_position.add({
+        x: Rotation.offsetX(intial_angle, 16),
+        y: Rotation.offsetY(intial_angle, 16)
+      });
       self.velocity = initial_velocity;
       self.angle    = intial_angle;
       self.accelleration = 1.2;
