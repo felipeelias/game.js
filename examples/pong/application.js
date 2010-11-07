@@ -1,6 +1,11 @@
 var game = new Game();
-var player = new Paddle(game);
+var player1 = new Paddle(game);
+var player2 = new Paddle(game);
 var ball = new Ball(game);
+
+ball.position = { x: 21, y: (game.canvas.height / 2) - 5 };
+player1.position = { x: 10, y: (game.canvas.height / 2) - 50 };
+player2.position = { x: game.canvas.width - 20, y: (game.canvas.height / 2) - 50 };
 
 $("#canvas").css({"background-color": "#000"});
 
@@ -18,18 +23,19 @@ game.drawBackground(function(paper) {
 
 game.loop(function() {
   if (isKeyPressed('up')) {
-    player.moveUp();
+    player1.moveUp();
   }
   
   if (isKeyPressed('down')) {
-    player.moveDown();
+    player1.moveDown();
   }
   
   if (!ball.isFired() && isKeyPressed('space')) {
     ball.fire();
   }
   
-  player.draw();
+  player1.draw();
+  player2.draw();
   ball.draw();
 });
 
