@@ -2,7 +2,8 @@ function Game(options) {
   var self = this,
       gameLoop, 
       defaultLoop,
-      started;
+      started,
+      backgroundDrawings;
   
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
@@ -22,7 +23,11 @@ function Game(options) {
       self.calculateSineWave();
 
       self.clearContext();
-
+      
+      if (backgroundDrawings !== undefined) {
+        backgroundDrawings(game.paper);
+      }
+      
       gameLoop.call(self);
     }
     
@@ -72,6 +77,10 @@ function Game(options) {
     
     loop: function( loop ) {
       gameLoop = loop;
+    },
+    
+    drawBackground: function( fn ) {
+      backgroundDrawings = fn;
     },
     
     clearContext: function() {
