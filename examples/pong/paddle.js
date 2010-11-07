@@ -6,7 +6,9 @@
           height: 100,
           velocity: 7
         },
-        padding = 10;
+        padding = 10,
+        upperBound = game.canvas.height - player.height - padding,
+        lowerBound = padding;
 
     $.extend(self, {
       init: function() {
@@ -29,11 +31,11 @@
       },
 
       checkBounds: function() {
-        if ( self.position.y >= (game.canvas.height - player.height - padding) ) {
-          self.position.y = game.canvas.height - player.height - padding;
+        if ( self.position.y >= upperBound ) {
+          self.position.y = upperBound;
         }
-        if ( self.position.y <= padding ) {
-          self.position.y = padding;
+        if ( self.position.y <= lowerBound ) {
+          self.position.y = lowerBound;
         }
       }
     });
