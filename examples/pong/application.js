@@ -1,5 +1,6 @@
 var game = new Game();
 var player = new Paddle(game);
+var ball = new Ball(game);
 
 $("#canvas").css({"background-color": "#000"});
 
@@ -25,6 +26,7 @@ game.loop(function() {
   }  
   
   player.draw();
+  ball.draw();
 });
 
 game.start();
