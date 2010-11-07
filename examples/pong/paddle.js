@@ -37,6 +37,12 @@
         if ( self.position.y <= lowerBound ) {
           self.position.y = lowerBound;
         }
+      },
+      
+      hasCollision: function( r, offset ) {
+        var p = self.position,
+            o = offset || 0;
+        return (r.x + o) > p.x && (r.y + o) > p.y && r.x < (p.x + player.width) && r.y < (p.y + player.height);
       }
     });
 

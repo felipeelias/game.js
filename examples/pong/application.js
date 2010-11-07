@@ -38,6 +38,8 @@ game.loop(function() {
     if (isKeyPressed('s')) {
       player1.moveDown();
     }
+    
+    ball.checkCollisionWithPlayers(player1, player2);
   }
   
   if (!ball.isFired() && isKeyPressed('space')) {

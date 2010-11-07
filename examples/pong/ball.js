@@ -45,6 +45,16 @@
       
       isFired: function() {
         return isFired;
+      },
+      
+      hit: function() {
+        self.direction.x *= -1;
+      },
+      
+      checkCollisionWithPlayers: function( player1, player2 ) {
+        if ( player1.hasCollision(self.position) || player2.hasCollision(self.position, padding) ) {
+          self.hit();
+        }
       }
     });
     
