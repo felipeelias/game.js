@@ -6,7 +6,8 @@
         velocity = 7,
         padding = 10,
         upperBound = game.canvas.height - padding,
-        lowerBound = padding;
+        lowerBound = padding,
+        isFired = false;
     
     $.extend(self, {
       init: function() {
@@ -21,15 +22,29 @@
       },
       
       move: function() {
-        self.position.x += velocity * self.direction.x;
-        self.position.y += velocity * self.direction.y;
-        self.checkBounds();
+        if (isFired) {
+          self.position.x += velocity * self.direction.x;
+          self.position.y += velocity * self.direction.y;
+          self.checkBounds();
+        }
       },
       
       checkBounds: function() {
         if ( (self.position.y >= upperBound) || ( self.position.y <= lowerBound ) ) {
           self.direction.y *= -1;
         }
+      },
+      
+      fire: function() {
+        isFired = true;
+      },
+      
+      stop: function() {
+        isFired = false;
+      },
+      
+      isFired: function() {
+        return isFired;
       }
     });
     

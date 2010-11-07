@@ -19,11 +19,15 @@ game.drawBackground(function(paper) {
 game.loop(function() {
   if (isKeyPressed('up')) {
     player.moveUp();
-  }  
+  }
   
   if (isKeyPressed('down')) {
     player.moveDown();
-  }  
+  }
+  
+  if (!ball.isFired() && isKeyPressed('space')) {
+    ball.fire();
+  }
   
   player.draw();
   ball.draw();
