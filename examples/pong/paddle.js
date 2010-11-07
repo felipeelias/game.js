@@ -4,7 +4,7 @@
         player = {
           width: 10,
           height: 100,
-          velocity: 7
+          velocity: 6
         },
         padding = 10,
         upperBound = game.canvas.height - player.height - padding,

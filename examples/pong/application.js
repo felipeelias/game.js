@@ -3,7 +3,6 @@ var player1 = new Paddle(game);
 var player2 = new Paddle(game);
 var ball = new Ball(game);
 
-ball.position = { x: 21, y: (game.canvas.height / 2) - 5 };
 player1.position = { x: 10, y: (game.canvas.height / 2) - 50 };
 player2.position = { x: game.canvas.width - 20, y: (game.canvas.height / 2) - 50 };
 

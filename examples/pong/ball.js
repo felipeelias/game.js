@@ -3,7 +3,7 @@
     var self = this,
         width = 10,
         height = 10,
-        velocity = 7,
+        velocity = 10,
         padding = 10,
         upperBound = game.canvas.height - padding,
         lowerBound = padding,
@@ -11,7 +11,7 @@
     
     $.extend(self, {
       init: function() {
-        self.position = { x: 30, y: 30 };
+        self.position = { x: (game.canvas.width / 2) - width / 2, y: (game.canvas.height / 2) - height / 2 };
         self.direction = { x: 1, y: -1 };
       },
       
