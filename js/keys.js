@@ -6,7 +6,9 @@ var keyMapping = {
   39: 'right',
   40: 'down',
   32: 'space',
-  80: 'p'
+  80: 'p',
+  83: 's',
+  87: 'w'
 };
 
 var codeMapping = invertMapping(keyMapping);

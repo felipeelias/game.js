@@ -23,10 +23,18 @@ game.drawBackground(function(paper) {
 
 game.loop(function() {
   if (isKeyPressed('up')) {
-    player1.moveUp();
+    player2.moveUp();
   }
   
   if (isKeyPressed('down')) {
+    player2.moveDown();
+  }
+  
+  if (isKeyPressed('w')) {
+    player1.moveUp();
+  }
+  
+  if (isKeyPressed('s')) {
     player1.moveDown();
   }
   
