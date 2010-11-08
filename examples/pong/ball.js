@@ -47,13 +47,19 @@
         return isFired;
       },
       
-      hit: function() {
+      hit: function( factor ) {
         self.direction.x *= -1;
+        self.direction.y = factor;
       },
       
       checkCollisionWithPlayers: function( player1, player2 ) {
-        if ( player1.hasCollision(self.position) || player2.hasCollision(self.position, padding) ) {
-          self.hit();
+        var factor,
+            p1Collision = player1.hasCollision(self.position),
+            p2Collision = player2.hasCollision(self.position, padding);
+            
+        if ( p1Collision || p2Collision ) {
+          factor = p1Collision ? calculateYFactor(self, player1) : calculateYFactor(self, player2);
+          self.hit(factor);
         }
       }
     });
@@ -62,4 +68,8 @@
   }
   
   window.Ball = Ball;
+  
+  function calculateYFactor( ball, player ) {
+    return (4 / 100 * (ball.position.y - player.position.y)) - 2;
+  }
 })();
