@@ -109,6 +109,10 @@ function Game(options) {
       
       radians: function( deg ) {
         return deg * 0.0174532925;
+      },
+      
+      random: function( from, to ) {
+        return Math.floor(Math.random() * (to + 1) + from);
       }
     }
   });
