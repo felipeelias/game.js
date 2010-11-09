@@ -10,10 +10,14 @@
       },
       
       draw: function() {
-        game.paper.font = "30px sans-serif";
-        game.paper.textAlign = "center";
-        game.paper.fillText(score.player1, game.canvas.width / 4, 70);
-        game.paper.fillText(score.player2, (game.canvas.width / 4) * 3, 70);
+        var opts = { 
+          font: "30px sans-serif",
+          align: "center",
+          color: "white"
+        };
+        
+        game.paper.text(score.player1, game.paper.width / 4, 70, opts)
+        game.paper.text(score.player2, (game.paper.width / 4) * 3, 70, opts)
       },
       
       addTo: function( scoreId ) {

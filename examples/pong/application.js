@@ -1,6 +1,6 @@
 var game = new Game();
-var player1 = new Paddle(game, { x: 10, y: (game.canvas.height / 2) - 50 });
-var player2 = new Paddle(game, { x: game.canvas.width - 20, y: (game.canvas.height / 2) - 50 });
+var player1 = new Paddle(game, { x: 10, y: (game.paper.height / 2) - 50 });
+var player2 = new Paddle(game, { x: game.paper.width - 20, y: (game.paper.height / 2) - 50 });
 var ball = new Ball(game);
 var score = new Score(game);
 

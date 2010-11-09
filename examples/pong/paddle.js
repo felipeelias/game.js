@@ -7,7 +7,7 @@
           velocity: 6
         },
         padding = 10,
-        upperBound = game.canvas.height - player.height - padding,
+        upperBound = game.paper.height - player.height - padding,
         lowerBound = padding;
 
     $.extend(self, {
@@ -16,8 +16,10 @@
       },
 
       draw: function() {
-        game.paper.fillStyle = "white";
-        game.paper.fillRect(self.position.x, self.position.y, player.width, player.height);
+        game.paper.draw(function(c) {
+          c.fillStyle = "white";
+          c.fillRect(self.position.x, self.position.y, player.width, player.height);
+        });
       },
 
       moveUp: function() {

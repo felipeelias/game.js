@@ -5,7 +5,7 @@
         height = 10,
         velocity = 10,
         padding = 10,
-        upperBound = game.canvas.height - padding,
+        upperBound = game.paper.height - padding,
         lowerBound = padding,
         isFired;
     
@@ -16,8 +16,10 @@
       
       draw: function() {
         self.move();
-        game.paper.fillStyle = "white";
-        game.paper.fillRect(self.position.x, self.position.y, width, height);
+        game.paper.draw(function(c) {
+          c.fillStyle = "white";
+          c.fillRect(self.position.x, self.position.y, width, height);
+        });
       },
       
       move: function() {
@@ -32,7 +34,7 @@
         if ( (self.position.y >= upperBound) || ( self.position.y <= lowerBound ) ) {
           self.direction.y *= -1;
         }
-        if ( self.position.x >= game.canvas.width ) {
+        if ( self.position.x >= game.paper.width ) {
           score.addTo("player1");
           self.reset();
           player1.reset();
@@ -69,7 +71,7 @@
       
       reset: function() {
         isFired = false;
-        self.position = { x: (game.canvas.width / 2) - width / 2, y: (game.canvas.height / 2) - height / 2 };
+        self.position = { x: (game.paper.width / 2) - width / 2, y: (game.paper.height / 2) - height / 2 };
         self.direction = { x: self.randomDirection(), y: self.randomDirection() };
       },
       
