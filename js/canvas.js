@@ -15,6 +15,10 @@
     return {
       context: context,
       
+      clear: function() {
+        context.clearRect(0, 0, canvasElement.width, canvasElement.height);
+      },
+      
       draw: function( fn ) {
         context.save();
         fn(context);
