@@ -59,10 +59,14 @@
         self.direction.y = factor;
       },
       
+      randomDirection: function() {
+        return game.util.random(0, 1) ? 1 : -1;
+      },
+      
       reset: function() {
         isFired = false;
         self.position = { x: (game.canvas.width / 2) - width / 2, y: (game.canvas.height / 2) - height / 2 };
-        self.direction = { x: 1, y: -1 };
+        self.direction = { x: self.randomDirection(), y: self.randomDirection() };
       },
       
       checkCollisionWithPlayers: function( player1, player2 ) {
