@@ -30,7 +30,7 @@ function Game(options) {
         backgroundDrawings(game.paper);
       }
       
-      gameLoop.call(self);
+      states['initial'].call(self);
     }
     
     setTimeout(defaultLoop, self.TIME_FRAME);
