@@ -5,6 +5,8 @@ function Game(options) {
       started,
       backgroundDrawings;
   
+  var states;
+  
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
   
@@ -49,6 +51,8 @@ function Game(options) {
   
   $.extend(self, {
     init: function() {
+      states = {};
+      
       self.canvas       = document.getElementById("canvas");
       self.paper        = self.canvas.getContext("2d");
       self.sineWave     = 0;
@@ -57,6 +61,14 @@ function Game(options) {
       
       bindGlobalKeys();
       defaultLoop();
+    },
+    
+    addState: function( stateName, stateFunction ) {
+      states[stateName] = stateFunction;
+    },
+    
+    state: function( stateName ) {
+      return states[stateName];
     },
     
     start: function() {
