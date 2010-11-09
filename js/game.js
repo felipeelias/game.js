@@ -54,8 +54,8 @@ function Game(options) {
       states = {};
       actualState = 'initial';
       
-      self.canvas       = document.getElementById("canvas");
-      self.paper        = self.canvas.getContext("2d");
+      self.paper        = new CanvasWrapper(document.getElementById("canvas"));
+      self.canvas       = self.paper.context;
       self.sineWave     = 0;
       self.currentTime  = 0;
       started           = false;
@@ -105,7 +105,7 @@ function Game(options) {
     },
     
     clearContext: function() {
-      self.paper.clearRect(0, 0, self.canvas.width, self.canvas.height);
+      self.paper.clear();
     },
     
     calculateSineWave: function() {
