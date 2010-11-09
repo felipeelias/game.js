@@ -1,6 +1,5 @@
 function Game(options) {
   var self = this,
-      gameLoop, 
       defaultLoop,
       started;
   
