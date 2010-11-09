@@ -18,7 +18,18 @@ game.drawBackground(function(paper) {
   paper.restore();
 });
 
-game.loop(function() {
+game.addState('initial', function() {
+  game.paper.fillStyle = "white";
+  game.paper.font = '40px sans-serif';
+  game.paper.textAlign = "center";
+  game.paper.fillText("Press 'space' to start", game.canvas.width/2, game.canvas.height/2);
+  
+  if (isKeyPressed('space')) {
+    game.changeState('ingame');
+  }
+});
+
+game.addState('ingame', function() {
   if (ball.isFired()) {
     if (isKeyPressed('up')) {
       player2.moveUp();
