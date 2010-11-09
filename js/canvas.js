@@ -16,6 +16,8 @@
       context: context,
       width: canvasElement.width,
       height: canvasElement.height,
+      centerX: canvasElement.width / 2,
+      centerY: canvasElement.height / 2,
       
       clear: function() {
         context.clearRect(0, 0, this.width, this.height);

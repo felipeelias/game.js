@@ -1,13 +1,13 @@
 var game = new Game();
-var player1 = new Paddle(game, { x: 10, y: (game.paper.height / 2) - 50 });
-var player2 = new Paddle(game, { x: game.paper.width - 20, y: (game.paper.height / 2) - 50 });
+var player1 = new Paddle(game, { x: 10, y: game.paper.centerY - 50 });
+var player2 = new Paddle(game, { x: game.paper.width - 20, y: game.paper.centerY - 50 });
 var ball = new Ball(game);
 var score = new Score(game);
 
 $("#canvas").css({"background-color": "#000"});
 
 game.addState('initial', function() {
-  this.paper.text("Press 'space' to start", this.paper.width / 2, this.paper.height / 2, {
+  this.paper.text("Press 'space' to start", this.paper.centerX, this.paper.centerY, {
     color: 'white',
     font: '40px sans-serif',
     align: 'center'
@@ -51,8 +51,8 @@ game.addState('ingame', function() {
   game.paper.draw(function(c) {
     c.globalAlpha = 0.5;
     c.beginPath();
-    c.moveTo(game.paper.width / 2, -1);
-    c.lineTo(game.paper.width / 2, game.paper.height);
+    c.moveTo(game.paper.centerX, -1);
+    c.lineTo(game.paper.centerX, game.paper.height);
     c.closePath();
     c.strokeStyle = "white";
     c.stroke();

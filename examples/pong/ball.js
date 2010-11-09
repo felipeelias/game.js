@@ -71,7 +71,7 @@
       
       reset: function() {
         isFired = false;
-        self.position = { x: (game.paper.width / 2) - width / 2, y: (game.paper.height / 2) - height / 2 };
+        self.position = { x: game.paper.centerX - (width / 2), y: game.paper.centerY - height / 2 };
         self.direction = { x: self.randomDirection(), y: self.randomDirection() };
       },
       
