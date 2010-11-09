@@ -35,10 +35,14 @@
         if ( self.position.x >= game.canvas.width ) {
           score.addTo("player1");
           self.reset();
+          player1.reset();
+          player2.reset();
         }
         if ( self.position.x <= 0 ) {
           score.addTo("player2");
           self.reset();
+          player1.reset();
+          player2.reset();
         }
       },
       
