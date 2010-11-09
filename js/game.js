@@ -2,8 +2,7 @@ function Game(options) {
   var self = this,
       gameLoop, 
       defaultLoop,
-      started,
-      backgroundDrawings;
+      started;
   
   var states, actualState;
   
@@ -23,12 +22,8 @@ function Game(options) {
     if (self.isStarted()) {
       self.updateTime();
       self.calculateSineWave();
-
-      self.clearContext();
       
-      if (backgroundDrawings !== undefined) {
-        backgroundDrawings(game.paper);
-      }
+      self.clearContext();
       
       self.state(actualState).call(self);
     }
@@ -98,10 +93,6 @@ function Game(options) {
     
     loop: function( loop ) {
       gameLoop = loop;
-    },
-    
-    drawBackground: function( fn ) {
-      backgroundDrawings = fn;
     },
     
     clearContext: function() {

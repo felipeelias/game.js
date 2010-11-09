@@ -6,18 +6,6 @@ var score = new Score(game);
 
 $("#canvas").css({"background-color": "#000"});
 
-game.drawBackground(function(paper) {
-  paper.draw(function(c) {
-    c.globalAlpha = 0.5;
-    c.beginPath();
-    c.moveTo(paper.width / 2, -1);
-    c.lineTo(paper.width / 2, paper.height);
-    c.closePath();
-    c.strokeStyle = "white";
-    c.stroke();
-  });
-});
-
 game.addState('initial', function() {
   this.paper.text("Press 'space' to start", this.paper.width / 2, this.paper.height / 2, {
     color: 'white',
@@ -54,6 +42,17 @@ game.addState('ingame', function() {
   if (!ball.isFired() && isKeyPressed('space')) {
     ball.fire();
   }
+  
+  // Background
+  paper.draw(function(c) {
+    c.globalAlpha = 0.5;
+    c.beginPath();
+    c.moveTo(paper.width / 2, -1);
+    c.lineTo(paper.width / 2, paper.height);
+    c.closePath();
+    c.strokeStyle = "white";
+    c.stroke();
+  });
   
   player1.draw();
   player2.draw();
