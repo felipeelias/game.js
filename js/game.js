@@ -23,7 +23,7 @@ function Game(options) {
       self.updateTime();
       self.calculateSineWave();
       
-      self.clearContext();
+      self.paper.clear();
       
       self.state(actualState).call(self);
     }
@@ -89,10 +89,6 @@ function Game(options) {
     
     isPaused: function() {
       return !started;
-    },
-    
-    clearContext: function() {
-      self.paper.clear();
     },
     
     calculateSineWave: function() {
