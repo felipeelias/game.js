@@ -33,6 +33,14 @@
         if ( (self.position.y >= upperBound) || ( self.position.y <= lowerBound ) ) {
           self.direction.y *= -1;
         }
+        if ( self.position.x >= game.canvas.width ) {
+          score.addTo("1");
+          self.resetPosition();
+        }
+        if ( self.position.x <= 0 ) {
+          score.addTo("2");
+          self.resetPosition();
+        }
       },
       
       fire: function() {
@@ -50,6 +58,11 @@
       hit: function( factor ) {
         self.direction.x *= -1;
         self.direction.y = factor;
+      },
+      
+      resetPosition: function() {
+        isFired = false;
+        self.position = { x: (game.canvas.width / 2) - width / 2, y: (game.canvas.height / 2) - height / 2 };
       },
       
       checkCollisionWithPlayers: function( player1, player2 ) {
