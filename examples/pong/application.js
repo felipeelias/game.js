@@ -7,22 +7,23 @@ var score = new Score(game);
 $("#canvas").css({"background-color": "#000"});
 
 game.drawBackground(function(paper) {
-  paper.save();
-  paper.globalAlpha = 0.5;
-  paper.beginPath();
-  paper.moveTo(game.canvas.width / 2, -1);
-  paper.lineTo(game.canvas.width / 2, game.canvas.height);
-  paper.closePath();
-  paper.strokeStyle = "white";
-  paper.stroke();
-  paper.restore();
+  paper.draw(function(c) {
+    c.globalAlpha = 0.5;
+    c.beginPath();
+    c.moveTo(paper.width / 2, -1);
+    c.lineTo(paper.width / 2, paper.height);
+    c.closePath();
+    c.strokeStyle = "white";
+    c.stroke();
+  });
 });
 
 game.addState('initial', function() {
-  game.paper.fillStyle = "white";
-  game.paper.font = '40px sans-serif';
-  game.paper.textAlign = "center";
-  game.paper.fillText("Press 'space' to start", game.canvas.width/2, game.canvas.height/2);
+  this.paper.text("Press 'space' to start", this.paper.width / 2, this.paper.height / 2, {
+    color: 'white',
+    font: '40px sans-serif',
+    align: 'center'
+  });
   
   if (isKeyPressed('space')) {
     game.changeState('ingame');
