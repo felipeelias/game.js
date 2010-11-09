@@ -1,9 +1,9 @@
 function Game(options) {
   var self = this,
       defaultLoop,
-      started;
-  
-  var states, actualState;
+      started,
+      states, 
+      actualState;
   
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
@@ -20,7 +20,6 @@ function Game(options) {
   defaultLoop = function() {
     if (self.isStarted()) {
       self.updateTime();
-      self.calculateSineWave();
       
       self.paper.clear();
       
@@ -50,7 +49,6 @@ function Game(options) {
       
       self.paper        = new CanvasWrapper(document.getElementById("canvas"));
       self.canvas       = self.paper.context;
-      self.sineWave     = 0;
       self.currentTime  = 0;
       started           = false;
       
@@ -88,11 +86,6 @@ function Game(options) {
     
     isPaused: function() {
       return !started;
-    },
-    
-    calculateSineWave: function() {
-      self.sineWave = ((Math.sin(self.currentTime / 1000) + 1) / 2);
-      return self.sineWave;
     },
     
     updateTime: function() {
