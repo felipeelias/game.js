@@ -7,6 +7,7 @@ var keyMapping = {
   40: 'down',
   32: 'space',
   80: 'p',
+  82: 'r',
   83: 's',
   87: 'w'
 };

@@ -5,8 +5,7 @@
     
     $.extend(self, {
       init: function() {
-        score.player1 = 0;
-        score.player2 = 0;
+        self.reset();
       },
       
       draw: function() {
@@ -22,6 +21,11 @@
       
       addTo: function( scoreId ) {
         score[scoreId] += 1;
+      },
+      
+      reset: function() {
+        score.player1 = 0;
+        score.player2 = 0;
       }
     });
     

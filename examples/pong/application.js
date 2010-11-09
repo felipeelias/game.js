@@ -39,16 +39,20 @@ game.addState('ingame', function() {
     ball.checkCollisionWithPlayers(player1, player2);
   }
   
+  if (isKeyPressed('r')) {
+    game.changeState('ingame');
+  }
+  
   if (!ball.isFired() && isKeyPressed('space')) {
     ball.fire();
   }
   
   // Background
-  paper.draw(function(c) {
+  game.paper.draw(function(c) {
     c.globalAlpha = 0.5;
     c.beginPath();
-    c.moveTo(paper.width / 2, -1);
-    c.lineTo(paper.width / 2, paper.height);
+    c.moveTo(game.paper.width / 2, -1);
+    c.lineTo(game.paper.width / 2, game.paper.height);
     c.closePath();
     c.strokeStyle = "white";
     c.stroke();
@@ -58,6 +62,13 @@ game.addState('ingame', function() {
   player2.draw();
   ball.draw();
   score.draw();
+}, {
+  before: function() {
+    player1.reset();
+    player2.reset();
+    ball.reset();
+    score.reset();
+  }
 });
 
 game.start();
