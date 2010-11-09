@@ -29,6 +29,12 @@
         context.restore();
       },
       
+      path: function( fn ) {
+        context.beginPath();
+        fn(context);
+        context.closePath();
+      },
+      
       text: function(text, x, y, options) {
         var options = $.extend({}, textDefaults, options);
         

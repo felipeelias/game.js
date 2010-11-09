@@ -50,10 +50,12 @@ game.addState('ingame', function() {
   // Background
   game.paper.draw(function(c) {
     c.globalAlpha = 0.5;
-    c.beginPath();
-    c.moveTo(game.paper.centerX, -1);
-    c.lineTo(game.paper.centerX, game.paper.height);
-    c.closePath();
+
+    game.paper.path(function( path ) {
+      path.moveTo(game.paper.centerX, -1);
+      path.lineTo(game.paper.centerX, game.paper.height);
+    });
+
     c.strokeStyle = "white";
     c.stroke();
   });
