@@ -91,10 +91,6 @@ function Game(options) {
       return !started;
     },
     
-    loop: function( loop ) {
-      gameLoop = loop;
-    },
-    
     clearContext: function() {
       self.paper.clear();
     },
