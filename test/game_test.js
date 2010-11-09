@@ -60,6 +60,18 @@ asyncTest("should switch the states", 2, function() {
   this.game.start();
 });
 
+asyncTest("should run before function", 2, function() {
+  this.game.addState('initial', function() {
+    ok(true);
+  }, { 
+    before: function() { 
+      ok(true); 
+    } 
+  });
+  
+  this.game.start();
+});
+
 module("Canvas wrapper", {
   setup: function() {
     this.game = new Game();
