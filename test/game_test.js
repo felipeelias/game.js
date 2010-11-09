@@ -11,15 +11,15 @@ module("Game states", {
 test("should have a initial state", 1, function() {
   this.game.addState('initial', function() {});
   
-  ok($.isFunction(this.game.state('initial')));
+  ok($.isFunction(this.game.state('initial').fn));
 });
 
 test("should have multiple states", 2, function() {
   this.game.addState('initial', function() {});
   this.game.addState('credits', function() {});
 
-  ok($.isFunction(this.game.state('initial')));
-  ok($.isFunction(this.game.state('credits')));
+  ok($.isFunction(this.game.state('initial').fn));
+  ok($.isFunction(this.game.state('credits').fn));
 });
 
 test("the first current state is the 'initial'", 1, function() {
@@ -61,11 +61,19 @@ asyncTest("should switch the states", 2, function() {
 });
 
 asyncTest("should run before function", 2, function() {
+  this.game.counter = 1;
+  
   this.game.addState('initial', function() {
-    ok(true);
+    this.changeState('credits');
+  });
+  
+  this.game.addState('credits', function() {
+    equals(this.counter, 2);
+    start();
   }, { 
     before: function() { 
-      ok(true); 
+      equals(this.counter, 1);
+      this.counter += 1;
     } 
   });
   

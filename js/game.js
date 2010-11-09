@@ -23,7 +23,7 @@ function Game(options) {
       
       self.paper.clear();
       
-      self.state(actualState).call(self);
+      self.state(actualState).fn.call(self);
     }
     
     setTimeout(defaultLoop, self.TIME_FRAME);
@@ -56,8 +56,12 @@ function Game(options) {
       defaultLoop();
     },
     
-    addState: function( stateName, stateFunction ) {
-      states[stateName] = stateFunction;
+    addState: function( stateName, stateFunction, options ) {
+      var opts = options || {};
+      states[stateName] = {
+        fn: stateFunction,
+        before: opts.before
+      };
     },
     
     state: function( stateName ) {
@@ -69,6 +73,9 @@ function Game(options) {
     },
     
     changeState: function( stateName ) {
+      if ( self.state(stateName).before !== undefined ) {
+        self.state(stateName).before.call(self);
+      }
       actualState = stateName;
     },
     
