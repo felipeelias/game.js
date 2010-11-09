@@ -46,7 +46,10 @@
       },
       
       reset: function() {
-        self.position = position;
+        self.position = {
+          x: position.x,
+          y: position.y
+        };
       }
     });
 
