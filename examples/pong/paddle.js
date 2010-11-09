@@ -1,5 +1,5 @@
 (function() {
-  function Paddle( game ) {
+  function Paddle( game, position ) {
     var self = this,
         player = {
           width: 10,
@@ -12,7 +12,7 @@
 
     $.extend(self, {
       init: function() {
-        self.position = { x: 10, y: 10 };
+        self.reset();
       },
 
       draw: function() {
@@ -43,6 +43,10 @@
         var p = self.position,
             o = offset || 0;
         return (r.x + o) > p.x && (r.y + o) > p.y && r.x < (p.x + player.width) && r.y < (p.y + player.height);
+      },
+      
+      reset: function() {
+        self.position = position;
       }
     });
 

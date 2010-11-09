@@ -1,11 +1,8 @@
 var game = new Game();
-var player1 = new Paddle(game);
-var player2 = new Paddle(game);
+var player1 = new Paddle(game, { x: 10, y: (game.canvas.height / 2) - 50 });
+var player2 = new Paddle(game, { x: game.canvas.width - 20, y: (game.canvas.height / 2) - 50 });
 var ball = new Ball(game);
 var score = new Score(game);
-
-player1.position = { x: 10, y: (game.canvas.height / 2) - 50 };
-player2.position = { x: game.canvas.width - 20, y: (game.canvas.height / 2) - 50 };
 
 $("#canvas").css({"background-color": "#000"});
 
