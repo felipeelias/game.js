@@ -14,6 +14,18 @@ test("should have a initial state", 1, function() {
   ok($.isFunction(this.game.state('initial')));
 });
 
+test("should have multiple states", 2, function() {
+  this.game.addState('initial', function() {});
+  this.game.addState('credits', function() {});
+
+  ok($.isFunction(this.game.state('initial')));
+  ok($.isFunction(this.game.state('credits')));
+});
+
+test("the first current state is the 'initial'", 1, function() {
+  equal(this.game.currentState(), 'initial');
+});
+
 asyncTest("should call initial state when game starts", 1, function() {
   this.game.addState('initial', function() {
     ok(true);

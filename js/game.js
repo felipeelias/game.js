@@ -5,7 +5,7 @@ function Game(options) {
       started,
       backgroundDrawings;
   
-  var states;
+  var states, actualState;
   
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
@@ -52,6 +52,7 @@ function Game(options) {
   $.extend(self, {
     init: function() {
       states = {};
+      actualState = 'initial';
       
       self.canvas       = document.getElementById("canvas");
       self.paper        = self.canvas.getContext("2d");
@@ -69,6 +70,10 @@ function Game(options) {
     
     state: function( stateName ) {
       return states[stateName];
+    },
+    
+    currentState: function() {
+      return actualState;
     },
     
     start: function() {
