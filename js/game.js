@@ -60,7 +60,8 @@ function Game(options) {
       var opts = options || {};
       states[stateName] = {
         fn: stateFunction,
-        before: opts.before
+        before: opts.before,
+        after: opts.after
       };
     },
     
@@ -73,6 +74,9 @@ function Game(options) {
     },
     
     changeState: function( stateName ) {
+      if ( self.state(actualState).after !== undefined ) {
+        self.state(actualState).after.call(self);
+      }
       if ( self.state(stateName).before !== undefined ) {
         self.state(stateName).before.call(self);
       }

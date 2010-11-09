@@ -80,6 +80,26 @@ asyncTest("should run before function", 2, function() {
   this.game.start();
 });
 
+asyncTest("should run after function", 2, function() {
+  this.game.counter = 1;
+  
+  this.game.addState('initial', function() {
+    this.changeState('credits');
+  }, { 
+    after: function() { 
+      equals(this.counter, 1);
+      this.counter += 1;
+    }
+  });
+  
+  this.game.addState('credits', function() {
+    equals(this.counter, 2);
+    start();
+  });
+  
+  this.game.start();
+});
+
 module("Canvas wrapper", {
   setup: function() {
     this.game = new Game();
