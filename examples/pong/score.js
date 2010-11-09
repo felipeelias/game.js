@@ -16,8 +16,8 @@
         game.paper.fillText(score.player2, (game.canvas.width / 4) * 3, 70);
       },
       
-      addTo: function( playerId ) {
-        score['player' + playerId] += 1;
+      addTo: function( scoreId ) {
+        score[scoreId] += 1;
       }
     });
     

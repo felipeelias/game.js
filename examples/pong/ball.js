@@ -34,11 +34,11 @@
           self.direction.y *= -1;
         }
         if ( self.position.x >= game.canvas.width ) {
-          score.addTo("1");
+          score.addTo("player1");
           self.resetPosition();
         }
         if ( self.position.x <= 0 ) {
-          score.addTo("2");
+          score.addTo("player2");
           self.resetPosition();
         }
       },
