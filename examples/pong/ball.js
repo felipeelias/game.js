@@ -7,12 +7,11 @@
         padding = 10,
         upperBound = game.canvas.height - padding,
         lowerBound = padding,
-        isFired = false;
+        isFired;
     
     $.extend(self, {
       init: function() {
-        self.position = { x: (game.canvas.width / 2) - width / 2, y: (game.canvas.height / 2) - height / 2 };
-        self.direction = { x: 1, y: -1 };
+        self.reset();
       },
       
       draw: function() {
@@ -35,11 +34,11 @@
         }
         if ( self.position.x >= game.canvas.width ) {
           score.addTo("player1");
-          self.resetPosition();
+          self.reset();
         }
         if ( self.position.x <= 0 ) {
           score.addTo("player2");
-          self.resetPosition();
+          self.reset();
         }
       },
       
@@ -60,9 +59,10 @@
         self.direction.y = factor;
       },
       
-      resetPosition: function() {
+      reset: function() {
         isFired = false;
         self.position = { x: (game.canvas.width / 2) - width / 2, y: (game.canvas.height / 2) - height / 2 };
+        self.direction = { x: 1, y: -1 };
       },
       
       checkCollisionWithPlayers: function( player1, player2 ) {
