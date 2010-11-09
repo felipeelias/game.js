@@ -30,7 +30,7 @@ function Game(options) {
         backgroundDrawings(game.paper);
       }
       
-      states['initial'].call(self);
+      states[actualState].call(self);
     }
     
     setTimeout(defaultLoop, self.TIME_FRAME);
@@ -74,6 +74,10 @@ function Game(options) {
     
     currentState: function() {
       return actualState;
+    },
+    
+    changeState: function( stateName ) {
+      actualState = stateName;
     },
     
     start: function() {

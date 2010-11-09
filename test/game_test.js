@@ -45,3 +45,17 @@ asyncTest("the caller object of the states should be the game object", 1, functi
   
   this.game.start();
 });
+
+asyncTest("should switch the states", 2, function() {
+  this.game.addState('initial', function() {
+    this.changeState('credits');
+    ok(true);
+  });
+  
+  this.game.addState('credits', function() {
+    ok(true);
+    start();
+  });
+  
+  this.game.start();
+});
