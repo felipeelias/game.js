@@ -14,9 +14,11 @@
     
     return {
       context: context,
+      width: canvasElement.width,
+      height: canvasElement.height,
       
       clear: function() {
-        context.clearRect(0, 0, canvasElement.width, canvasElement.height);
+        context.clearRect(0, 0, this.width, this.height);
       },
       
       draw: function( fn ) {
