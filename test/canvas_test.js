@@ -1,5 +1,6 @@
 module("Canvas wrapper", {
   setup: function() {
+    $("#qunit-fixture").append("<canvas id=\"canvas\"></canvas>");
     this.canvas = new CanvasWrapper(document.getElementById("canvas"));
   }
 });
