@@ -21,8 +21,9 @@ test("check for the height, width and center orientation", 4, function() {
   equal(this.canvas.centerY, 150);
 });
 
-test("setting background color", 2, function() {
-  equal("rgba(0, 0, 0, 0)", $(this.fixture_element).css("background-color"));
-  this.canvas.setBackgroundColor("rgb(255, 255, 255)");
+test("setting background color", 3, function() {
+  equal("rgba(0, 0, 0, 0)", this.canvas.backgroundColor());
+
+  equal("rgb(255, 255, 255)", this.canvas.backgroundColor("rgb(255, 255, 255)"));
   equal("rgb(255, 255, 255)", $(this.fixture_element).css("background-color"));
 });

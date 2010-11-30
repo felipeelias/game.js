@@ -48,8 +48,11 @@
         return this;
       },
       
-      setBackgroundColor: function( color ) {
-        $(canvasElement).css('background-color', color);
+      backgroundColor: function( color ) {
+        if (color !== undefined) {
+          $(canvasElement).css('background-color', color);
+        }
+        return $(canvasElement).css('background-color');
       }
     };
   }
