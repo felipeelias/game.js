@@ -46,6 +46,10 @@
         });
         
         return this;
+      },
+      
+      setBackgroundColor: function( color ) {
+        $(canvasElement).css('background-color', color);
       }
     };
   }
