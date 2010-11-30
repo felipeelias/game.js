@@ -1,5 +1,6 @@
 module("Game states", {
   setup: function() {
+    $("#qunit-fixture").append("<canvas id=\"canvas\"></canvas>");
     this.game = new Game();
   },
   
