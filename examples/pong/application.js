@@ -4,8 +4,6 @@ var player2 = new Paddle(game, { x: game.paper.width - 20, y: game.paper.centerY
 var ball = new Ball(game);
 var score = new Score(game);
 
-$("#canvas").css({"background-color": "#000"});
-
 game.addState('initial', function() {
   this.paper.text("Press 'space' to start", this.paper.centerX, this.paper.centerY, {
     color: 'white',
