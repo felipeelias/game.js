@@ -8,14 +8,10 @@ function Game(options) {
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
   
-  // future api
-  // self.options = $.extend({
-  //   fps: 30,
-  //   size: {
-  //     width: 400,
-  //     heigth: 400
-  //   }
-  // }, options);
+  self.options = $.extend({}, {
+    canvasId: 'canvas',
+    backgroundColor: 'rgb(0, 0, 0)'
+  }, options);
     
   defaultLoop = function() {
     if (self.isStarted()) {
@@ -47,10 +43,12 @@ function Game(options) {
       states = {};
       actualState = 'initial';
       
-      self.paper        = new CanvasWrapper(document.getElementById("canvas"));
+      self.paper        = new CanvasWrapper(document.getElementById(self.options.canvasId));
       self.canvas       = self.paper.context;
       self.currentTime  = 0;
       started           = false;
+      
+      self.paper.backgroundColor(self.options.backgroundColor);
       
       bindGlobalKeys();
       defaultLoop();

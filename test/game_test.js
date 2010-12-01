@@ -100,3 +100,30 @@ asyncTest("should run after function", 2, function() {
   
   this.game.start();
 });
+
+module("Game options", {
+  setup: function() {
+    $("#qunit-fixture").append("<canvas id=\"canvas\"></canvas>");
+    $("#qunit-fixture").append("<canvas id=\"canvas-extra\"></canvas>");
+  }
+});
+
+test("shoud have the default options", 2, function() {
+  var game = new Game(),
+      el = $("#canvas");
+  
+  same(game.canvas, el[0].getContext("2d"));
+  equals(el.css('background-color'), "rgb(0, 0, 0)");
+});
+
+test("shoud set new options on initialization", 2, function() {
+  var el = $("#canvas-extra");
+  
+  var game = new Game({
+    canvasId: 'canvas-extra',
+    backgroundColor: 'rgb(255, 255, 255)'
+  });
+  
+  same(game.canvas, el[0].getContext("2d"));
+  equals(el.css('background-color'), "rgb(255, 255, 255)");
+});
