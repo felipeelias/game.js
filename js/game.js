@@ -3,7 +3,8 @@ function Game(options) {
       defaultLoop,
       started,
       states, 
-      actualState;
+      actualState,
+      sounds = {};
   
   self.FPS        = 30;
   self.TIME_FRAME = 1000 / self.FPS; // time of each frame in miliseconds
@@ -100,6 +101,16 @@ function Game(options) {
     updateTime: function() {
       self.currentTime += self.TIME_FRAME;
       return self.currentTime;
+    },
+    
+    sounds: {
+      add: function( file_path ) {
+        return sounds[file_path] = new Sound(file_path);
+      },
+      
+      get: function( file_path ) {
+        return sounds[file_path];
+      }
     },
     
     util: {

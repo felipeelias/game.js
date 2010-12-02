@@ -127,3 +127,15 @@ test("shoud set new options on initialization", 2, function() {
   same(game.canvas, el[0].getContext("2d"));
   equals(el.css('background-color'), "rgb(255, 255, 255)");
 });
+
+module("Game sounds", {
+  setup: function() {
+    $("#qunit-fixture").append("<canvas id=\"canvas\"></canvas>");
+    this.game = new Game();
+  }
+});
+
+test("should add sounds to the game", 1, function() {
+  this.game.sounds.add('sounds/test');
+  ok( $.isFunction(this.game.sounds.get('sounds/test').play) );
+});
