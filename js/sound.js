@@ -12,11 +12,7 @@
         
     path = file_name + Sound.default_file_extension;
     audio = new Audio();
-    //starts with preload none and src setted
-    //#load sets the preload to metadata
-    //#play plays
-    //#stop pauses
-    //events listeners: onloadstart, onloadend, onplay, onstop
+    
     return {
       name: file_name,
       path: path,
