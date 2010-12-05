@@ -11,7 +11,7 @@
         audio_element;
         
     path = file_name + Sound.default_file_extension;
-    audio = new Audio(path);
+    audio = new Audio();
     //starts with preload none and src setted
     //#load sets the preload to metadata
     //#play plays
@@ -33,6 +33,7 @@
       
       preload: function() {
         audio.preload = "metadata";
+        audio.src = path;
       }
     };
   }

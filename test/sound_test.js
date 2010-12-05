@@ -53,23 +53,24 @@ test("should have the defaults attributes", 2, function() {
   equals( sound.audio_element.tagName, "AUDIO", "audio tagname" );
 });
 
-asyncTest("should not load the file when created", 0, function() {
-  var sound = new Sound('fixtures/sound1');
-  
-  sound.loadEnd(function() {
-    ok(false);
-  });
-  
-  start();
-});
-
-asyncTest("should load the file after preload function", 0, function() {
+asyncTest("should not load the file when created", 1, function() {
   var sound = new Sound('fixtures/sound1');
   
   sound.loadEnd(function() {
     ok(true);
   });
+
+  ok(true);
+  start();
+});
+
+asyncTest("should load the file after preload function", 1, function() {
+  var sound = new Sound('fixtures/sound1');
+  
+  sound.loadEnd(function() {
+    ok(true);
+    start();
+  });
   
   sound.preload();
-  start();
 });
