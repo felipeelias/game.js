@@ -4,6 +4,10 @@ var player2 = new Paddle(game, { x: game.paper.width - 20, y: game.paper.centerY
 var ball = new Ball(game);
 var score = new Score(game);
 
+game.sounds.add('sounds/ping');
+game.sounds.add('sounds/pong');
+game.sounds.preload();
+
 game.addState('initial', function() {
   this.paper.text("Press 'space' to start", this.paper.centerX, this.paper.centerY, {
     color: 'white',
