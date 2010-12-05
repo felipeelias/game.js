@@ -110,6 +110,12 @@ function Game(options) {
       
       get: function( file_path ) {
         return sounds[file_path];
+      },
+      
+      preload: function() {
+        for(var sound in sounds) {
+          sounds[sound].preload();
+        }
       }
     },
     

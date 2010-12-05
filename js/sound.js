@@ -8,7 +8,8 @@
   
   function Sound( file_name ) {
     var path,
-        audio_element;
+        audio_element,
+        audio;
         
     path = file_name + Sound.default_file_extension;
     audio = new Audio();

@@ -139,3 +139,14 @@ test("should add sounds to the game", 1, function() {
   this.game.sounds.add('sounds/test');
   ok( $.isFunction(this.game.sounds.get('sounds/test').play) );
 });
+
+asyncTest("should preload sounds of the game", 1, function() {
+  this.game.sounds.add('fixtures/sound1');
+  
+  this.game.sounds.get('fixtures/sound1').loadEnd(function() {
+    ok(true);
+    start();
+  });
+
+  this.game.sounds.preload();
+});

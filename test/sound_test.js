@@ -91,3 +91,20 @@ asyncTest("should play the sound", 1, function() {
   sound.preload();
   sound.play();
 });
+
+asyncTest("tesing with multiple sounds", 2, function() {
+  var sound1 = new Sound('fixtures/sound1');
+  var sound2 = new Sound('fixtures/sound2');
+  
+  sound1.loadEnd(function() {
+    ok(/fixtures\/sound1/.test(sound1.audio_element.src), "path of sound 1");
+  });
+
+  sound2.loadEnd(function() {
+    ok(/fixtures\/sound2/.test(sound2.audio_element.src), "path of sound 2");
+    start();
+  });
+  
+  sound1.preload();
+  sound2.preload();
+});
