@@ -78,3 +78,16 @@ asyncTest("should load the file after preload function", 2, function() {
   
   sound.preload();
 });
+
+asyncTest("should play the sound", 1, function() {
+  var sound = new Sound('fixtures/sound1');
+  
+  sound.audio_element.volume = 0;
+  sound.audio_element.addEventListener('play', function() {
+    ok(true);
+    start();
+  });
+  
+  sound.preload();
+  sound.play();
+});

@@ -22,7 +22,7 @@
       path: path,
       audio_element: audio,
       play: function() {
-        
+        audio.play();
       },
       
       loadEnd: function( fn ) {
