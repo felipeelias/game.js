@@ -31,6 +31,12 @@
         });
       },
       
+      loadStart: function( fn ) {
+        audio.addEventListener('loadstart', function() {
+          fn.call(this);
+        });
+      },
+      
       preload: function() {
         audio.preload = "metadata";
         audio.src = path;

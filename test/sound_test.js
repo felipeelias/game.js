@@ -64,8 +64,12 @@ asyncTest("should not load the file when created", 1, function() {
   start();
 });
 
-asyncTest("should load the file after preload function", 1, function() {
+asyncTest("should load the file after preload function", 2, function() {
   var sound = new Sound('fixtures/sound1');
+  
+  sound.loadStart(function() {
+    ok(true);
+  });
   
   sound.loadEnd(function() {
     ok(true);
