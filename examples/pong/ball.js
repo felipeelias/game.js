@@ -11,6 +11,10 @@
     
     $.extend(self, {
       init: function() {
+        self.sounds = {
+          ping: new Audio("sounds/ping.mp3"),
+          pong: new Audio("sounds/pong.mp3")
+        };
         self.reset();
       },
       
@@ -60,7 +64,14 @@
         return isFired;
       },
       
+      pingPong: function() {
+        self.currentSound = self.currentSound === "ping" ? "pong" : "ping";
+        console.log(self.currentSound);
+        return self.currentSound;
+      },
+      
       hit: function( factor ) {
+        self.sounds[self.pingPong()].play();
         self.direction.x *= -1;
         self.direction.y = factor;
       },
